@@ -9,19 +9,20 @@ def bump_version(version_line, pre_release):
         bumped_version = curr_version.replace("-dev", "")  # remove
     else:
         split_version = curr_version.split(".")  # "0.17.0" --> ["0,17,0"]
-        num = int(split_version[1]) + 1  # take middle value and cast as int and bump it by 1
-        bumped_version = split_version[0] + "." + str(num) + "." + split_version[2] + "-dev"
+        split_version[1] = str(int(split_version[1]) + 1)  # take middle value and cast as int and bump it by 1
+        split_version[2] = split_version[2].replace('"', '-dev"')  # add -dev, ["0,18,0"] --> ["0,18,0-dev"]
+        bumped_version = ".".join(split_version)
 
     data[-1] = bumped_version
-    return "".join(data), bumped_version
+    return " ".join(data), bumped_version
 
 
 def update_version_file(path, pre_release=True):
     with open(path, 'r') as f:
         lines = f.readlines()
 
-    for line in lines:
-        with open(path, 'w') as f:
+    with open(path, 'w') as f:
+        for line in lines:
             if "__version__" in line.split(' '):
                 new_line, new_version = bump_version(line, pre_release)
                 f.write(new_line)
@@ -35,17 +36,16 @@ def remove_empty_headers(lines):
     pntr1 = 0
 
     while pntr1 < len(lines):
+        is_empty = True
         for pntr2 in range(pntr1 + 1, len(lines)):
-            is_empty = True
-            line1 = lines[pntr1]
             line2 = lines[pntr2]
 
             if (len(line2) >= 4) and (line2[:4] == "### "):
                 if (pntr1 == 0) or (not is_empty):
-                    cleaned_lines.extend(lines[pntr1, pntr2]) # keep these sections!
+                    cleaned_lines.extend(lines[pntr1:pntr2])  # keep these sections!
 
                 pntr1 = pntr2
-                break
+                is_empty = True  # reset the empty flag
 
             elif line2 == '\n':
                 pass
@@ -53,7 +53,7 @@ def remove_empty_headers(lines):
             else:
                 is_empty = False
 
-        cleaned_lines.extend(lines[pntr1, pntr1+1])
+        cleaned_lines.extend(lines[pntr1:pntr1+1])
         pntr1 += 1
 
     return cleaned_lines
@@ -81,7 +81,7 @@ def update_changelog(path, new_version, pre_release=True):
             line = lines[0]
             split_line = line.split(" ")
             split_line[-1] = new_version  # replace version (split_line = [#, Release, 0.17.0-dev])
-            new_line = "".join(split_line)
+            new_line = " ".join(split_line) + '\n'
             f.write(new_line)
 
             # remover empty headers
@@ -102,8 +102,12 @@ def main(version_file_path, changelog_file_path, pre_release=True):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("version_path")
-    parser.add_argument("changelog_path")
-    parser.add_argument("release_status")
+    parser.add_argument("--version_path", type=str, required=True, help="Path to the _version.py file")
+    parser.add_argument("--changelog_path", type=str, required=True, help="Path to the changelog")
+    parser.add_argument("--pre_release", dest="release_status", action="store_true",
+                        help="True if this is a pre-release version bump, False if it is post release")
+    parser.add_argument("--post_release", dest="release_status", action="store_false",
+                        help="True if this is a pre-release version bump, False if it is post release")
+
     args = parser.parse_args()
     main(args.version_path, args.changelog_path, args.release_status)
