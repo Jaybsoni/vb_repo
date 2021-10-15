@@ -5,14 +5,18 @@
 ### Breaking changes
 
 ### Improvements
+- random improvements
 
 ### Documentation
+- new docs
 
 ### Bug fixes
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+John Doe, Jay Soni
 
 ---
 # Release "0.17.0"
