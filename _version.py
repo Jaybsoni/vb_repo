@@ -1,4 +1,4 @@
-## version test file
+# version file
 
 
 
@@ -16,4 +16,4 @@
 
 
 
-__version__ = "0.17.0-dev"
+__version__ = "0.18.0-dev"
