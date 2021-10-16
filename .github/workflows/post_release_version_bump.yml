@@ -34,8 +34,7 @@ jobs:
         run: |
           git config user.name "VB Bot"
           git config user.email "<>"
-          git status
           git add _version.py
           git add CHANGELOG.md
           git commit -m "Pre-release version bump"
-          git push
+          git push origin main
