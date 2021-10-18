@@ -30,12 +30,23 @@ jobs:
       - name: Run update
         run: |
           python vb_script.py --version_path "./_version.py" --changelog_path "./CHANGELOG.md" --post_release 
-      - uses: actions/checkout@v2
-      - name: Push changes
-        run: |
-          git config user.name "VB Bot"
-          git config user.email "<>"
-          git add _version.py
-          git add CHANGELOG.md
-          git commit -m "Post-release version bump"
-          git push
+#       - uses: actions/checkout@v2
+#       - name: Push changes
+#         run: |
+#           git config user.name "VB Bot"
+#           git config user.email "<>"
+#           git add _version.py
+#           git add CHANGELOG.md
+#           git commit -m "Post-release version bump"
+#           git push
+
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: post release version bump
+          title: Version Bump
+          body: updated changelog and _version.py
+          branch: post-release-version-bump
+          reviewers: Jaybsoni 
+          base: main
