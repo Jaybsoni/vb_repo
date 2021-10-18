@@ -36,5 +36,10 @@ jobs:
           git config user.email "<>"
           git add _version.py
           git add CHANGELOG.md
+          echo ..............
+          git branch -a
+          echo ..............
+          git status
+          echo ..............
           git commit -m "Pre-release version bump"
           git push origin main
