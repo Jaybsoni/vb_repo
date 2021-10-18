@@ -1,4 +1,6 @@
-# Release "0.18.0"
+# Release "0.18.0-dev"
+
+### New features since last release
 
 ### Improvements
 - random improvements
