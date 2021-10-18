@@ -2,8 +2,10 @@
 
 
 ### New features since last release
+- new feature 
 
 ### Breaking changes
+- new change 
 
 ### Improvements
 
@@ -14,6 +16,8 @@
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+Just me,
 
 ---
 # Release "0.18.0"
