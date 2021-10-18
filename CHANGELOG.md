@@ -1,9 +1,11 @@
-# Release "0.19.0-dev"
+# Release "0.16.0-dev"
 
 
 ### New features since last release
+- new feature 
 
 ### Breaking changes
+- some change
 
 ### Improvements
 
@@ -14,6 +16,8 @@
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+Antal
 
 ---
 # Release "0.18.0"
