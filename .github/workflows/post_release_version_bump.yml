@@ -30,17 +30,12 @@ jobs:
       - name: Run update
         run: |
           python vb_script.py --version_path "./_version.py" --changelog_path "./CHANGELOG.md" --post_release 
+      - uses: actions/checkout@v2
       - name: Push changes
         run: |
           git config user.name "VB Bot"
           git config user.email "<>"
-          git checkout main
           git add _version.py
           git add CHANGELOG.md
-          echo ..............
-          git branch -a
-          echo ..............
-          git status
-          echo ..............
-          git commit -m "Pre-release version bump"
-          git push origin main
+          git commit -m "Post-release version bump"
+          git push
