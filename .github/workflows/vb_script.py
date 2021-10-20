@@ -1,6 +1,6 @@
 # This script handles the logic to update the changelog and version.py file
 # for the automated version bumps
-
+import os
 import argparse
 import pennylane as qml
 pl_version = '"' + qml.version() + '"\n'
@@ -48,6 +48,10 @@ def update_version_file(path, pre_release=True):
     Return:
         new_version (str): The bumped version string.
     """
+    print(os.getcwd())
+    os.chdir('../.././')
+    print(os.getcwd())
+    
     with open(path, 'r', encoding="utf8") as f:
         lines = f.readlines()
 
