@@ -1,15 +1,12 @@
-# Release "0.15.0-dev"
+# Release "0.18.0"
+
 
 
 ### New features since last release
 -1 new feature
 
-### Breaking changes
-
 ### Improvements
 -lots of improvements! 
-
-### Documentation
 
 ### Bug fixes
 -random bugs
