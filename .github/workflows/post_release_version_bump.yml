@@ -1,8 +1,8 @@
 name: Automated Release Version Bumps
 
 on:
-  release:          
-    types: [published]   # run on release! 
+  release:
+    types: [published]   # run on release!
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,7 +20,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
-          
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -28,8 +27,7 @@ jobs:
 
       - name: Run version bump
         run: |
-          python vb_script.py --version_path "./_version.py" --changelog_path "./CHANGELOG.md" --post_release 
-          
+          python vb_script.py --version_path "./_version.py" --changelog_path "./CHANGELOG.md" --post_release
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
@@ -37,5 +35,5 @@ jobs:
           title: Version Bump
           body: updated changelog and _version.py
           branch: post-release-version-bump
-          reviewers: Jaybsoni 
+          reviewers: Jaybsoni
           base: main
