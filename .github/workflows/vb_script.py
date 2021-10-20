@@ -51,6 +51,7 @@ def update_version_file(path, pre_release=True):
     print(os.getcwd())
     os.chdir('../.././')
     print(os.getcwd())
+    print('HERE!)
     
     with open(path, 'r', encoding="utf8") as f:
         lines = f.readlines()
