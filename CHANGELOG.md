@@ -1,3 +1,24 @@
+# Release "0.19.0-dev"
+
+### New features since last release
+- new feature 
+
+### Breaking changes
+
+### Improvements
+- new improvement
+
+### Documentation
+
+### Bug fixes
+
+### Contributors
+
+This release contains contributions from (in alphabetical order):
+
+Jay Soni,
+
+---
 # Release "0.18.0"
 
 
