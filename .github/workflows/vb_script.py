@@ -172,7 +172,7 @@ if __name__ == "__main__":
     parser.add_argument("--post_pl_release", dest="pl_release_status",
                         action="store_true", help="True if PL has already been released")
     parser.add_argument("--pre_pl_release", dest="pl_release_status",
-                        action="store_true", help="False if PL has not been released")
+                        action="store_false", help="False if PL has not been released")
 
     args = parser.parse_args()
     updated_version = update_version_file(args.version_path, args.release_status, args.pl_release_status)
