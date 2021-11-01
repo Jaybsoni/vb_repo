@@ -1,9 +1,19 @@
-# This script handles the logic to update the changelog and version.py file
-# for the automated version bumps
-import os
+# Copyright 2018-2021 Xanadu Quantum Technologies Inc.
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 import argparse
 import pennylane as qml
-pl_version = '"' + qml.version() + '"\n'
+pl_version = '"' + qml.version() + '"\n'  # we expect PL v0.X.0 here if we're releasing v0.X.0 of the plugin 
 
 
 def bump_version(version_line, pre_release):
@@ -26,7 +36,7 @@ def bump_version(version_line, pre_release):
     curr_version = data[-1]
 
     if pre_release:
-        bumped_version = pl_version.replace("-dev", "")  # get current Pennylane version then remove -dev
+        bumped_version = pl_version  # get current Pennylane version
     else:
         split_version = curr_version.split(".")  # "0.17.0" --> ["0,17,0"]
         split_version[1] = str(int(split_version[1]) + 1)  # take middle value and cast as int and bump it by 1
@@ -66,10 +76,10 @@ def remove_empty_headers(lines):
     Where a section begins with a header (### Header_Title).
 
     Args:
-        lines (list of strings): the paragraph containing the sections.
+        lines (list[string]): The paragraph containing the changelog sections.
 
     Returns:
-        cleaned_lines (list of strings): The paragraph with empty sections removed.
+        cleaned_lines (list[string]): The paragraph with empty sections removed.
     """
     cleaned_lines = []
     pntr1 = 0
@@ -99,16 +109,14 @@ def remove_empty_headers(lines):
 
 
 def update_changelog(path, new_version, pre_release=True):
-    """ Updates the Changelog file depending on the pre_release flag.
+    """ Updates the Changelog file depending on whether it's a pre-release
+    or post-release version bump.
 
     Args:
         path (str): The path to the changelog file.
         new_version (str): The bumped version string.
         pre_release (bool): A flag which determines if this is a
             pre-release or post-release version bump.
-
-    Returns:
-        None
     """
     with open(path, 'r', encoding="utf8") as f:
         lines = f.readlines()
@@ -141,7 +149,6 @@ def update_changelog(path, new_version, pre_release=True):
             # keep the rest of the changelog
             rest_of_changelog_lines = lines[end_of_section_index:]
             f.writelines(rest_of_changelog_lines)
-    return
 
 
 if __name__ == "__main__":
