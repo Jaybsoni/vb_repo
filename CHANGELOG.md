@@ -1,11 +1,7 @@
-# Release "0.19.0-dev"
-
-### New features since last release
+# Release "0.18.0"
 
 ### Breaking changes
 - new breaking change
-
-### Improvements
 
 ### Documentation
 -new docs
