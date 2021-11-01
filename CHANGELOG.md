@@ -3,16 +3,21 @@
 ### New features since last release
 
 ### Breaking changes
+- new breaking change
 
 ### Improvements
 
 ### Documentation
+-new docs
 
 ### Bug fixes
+- new bugs
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+Jay S
 
 ---
 # Release "0.18.0"
