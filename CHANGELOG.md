@@ -1,15 +1,6 @@
-# Release "0.19.0-dev"
+# Release "0.18.0"
 
 
-### New features since last release
-
-### Breaking changes
-
-### Improvements
-
-### Documentation
-
-### Bug fixes
 
 ### Contributors
 
