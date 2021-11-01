@@ -169,7 +169,10 @@ if __name__ == "__main__":
                         help="True if this is a pre-release version bump, False if it is post release")
     parser.add_argument("--post_release", dest="release_status", action="store_false",
                         help="True if this is a pre-release version bump, False if it is post release")
-    parser.add_argument("--pl_release_status", type=bool, required=True, help="True if PL has already been released")
+    parser.add_argument("--post_pl_release", dest="pl_release_status",
+                        action="store_true", help="True if PL has already been released")
+    parser.add_argument("--pre_pl_release", dest="pl_release_status",
+                        action="store_true", help="False if PL has not been released")
 
     args = parser.parse_args()
     updated_version = update_version_file(args.version_path, args.release_status, args.pl_release_status)
